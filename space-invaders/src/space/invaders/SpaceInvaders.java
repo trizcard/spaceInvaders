@@ -70,8 +70,9 @@ public class SpaceInvaders extends Application {
         inicio.setLayoutY(400);
         inicio.setOnAction((event) -> {
             System.out.println("Iniciando o jogo");
-            Jogo jogo = new Jogo();
-            jogo.start();
+            // quando clica no botao de inicio, chama o loop do jogo
+            Jogo jogo = new Jogo(primaryStage);
+            //jogo.start();
         });
         
         root.getChildren().add(canvas);
