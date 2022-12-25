@@ -31,19 +31,19 @@ public class SpaceInvaders extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        
+        // configura a tela inicial do jogo
         Pane root = new Pane();
         root.setPrefSize(500, 600);
         Canvas canvas = new Canvas(500, 600);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
-        Image original = new Image(getClass().getResourceAsStream("imagens/space.png"));
+        Image fundo = new Image(getClass().getResourceAsStream("imagens/space.png"));
         root.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
             canvas.setWidth(newValue.getWidth());
             canvas.setHeight(newValue.getHeight());
             
             // configura o fundo do jogo
-            gc.drawImage(original, 0, 0, 500, 600);
+            gc.drawImage(fundo, 0, 0, 500, 600);
             
             // configura o titulo do jogo
             gc.setFill( Color.LIGHTGRAY );
@@ -69,9 +69,9 @@ public class SpaceInvaders extends Application {
         inicio.setLayoutY(400);
         inicio.setOnAction((event) -> {
             System.out.println("Iniciando o jogo");
+            primaryStage.close();
             // quando clica no botao de inicio, chama o loop do jogo
-            Jogo jogo = new Jogo(primaryStage);
-            jogo.start();
+            Jogo jogo = new Jogo();
         });
         
         root.getChildren().add(canvas);

@@ -79,6 +79,28 @@ public class MatrizInvasores {
         }
         invasor.desenha(gc);
     }
+    
+    public int quantidade(){
+        int qtd = 0;
+        for (int i = 0; i < 11; i++){
+            if (linhaUm.get(i).getVivo()){
+                qtd++;
+            }
+            if (linhaDois.get(i).getVivo()){
+                qtd++;
+            }
+            if (linhaTres.get(i).getVivo()){
+                qtd++;
+            }
+            if (linhaQuatro.get(i).getVivo()){
+                qtd++;
+            }
+            if (linhaCinco.get(i).getVivo()){
+                qtd++;
+            }
+        }
+        return qtd;
+    }
 
     /**
      * Se ainda existir invasores essa funcao vai retornar false, caso todos os
@@ -90,11 +112,23 @@ public class MatrizInvasores {
         if(invasor.getVivo()){
             return false;
         }
-        qtdInv += linhaUm.size();
-        qtdInv += linhaDois.size();
-        qtdInv += linhaTres.size();
-        qtdInv += linhaQuatro.size();
-        qtdInv += linhaCinco.size();
+        for (int i = 0; i < 11; i++){
+            if (linhaUm.get(i).getVivo()){
+                qtdInv++;
+            }
+            if (linhaDois.get(i).getVivo()){
+                qtdInv++;
+            }
+            if (linhaTres.get(i).getVivo()){
+                qtdInv++;
+            }
+            if (linhaQuatro.get(i).getVivo()){
+                qtdInv++;
+            }
+            if (linhaCinco.get(i).getVivo()){
+                qtdInv++;
+            }
+        }
         
         return qtdInv == 0;
     }
@@ -284,10 +318,7 @@ public class MatrizInvasores {
         return pontos;
     }
     
-    /**
-     * move todos os invasores
-     */
-    public void move(){
+    public void moveI4(){
         if ((invasor.getCoordX() == 499 && !direcI4) || (invasor.getCoordX() == 0 && direcI4)){
             direcI4 = !direcI4;
             invasor.MoverX(direcI4);
@@ -295,7 +326,12 @@ public class MatrizInvasores {
         else{
             invasor.MoverX(direcI4);
         }
-        
+    }
+    
+    /**
+     * move todos os invasores
+     */
+    public void move(){        
         if (linhaCinco.get(10).getCoordX() == 499 && direc){
             for (int i = 0; i < 11; i++){
                 linhaUm.get(i).MoverY();
