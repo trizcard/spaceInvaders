@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space.invaders;
 
 import javafx.scene.image.Image;
 
-/**
- *
- * @author beatr
- */
 public class Canhao extends Nave{
     private int vida;
     private int pontos;
@@ -29,56 +20,11 @@ public class Canhao extends Nave{
     }
     
     /**
-     * @return os pontos do jogador
-     */
-    public int getPontos(){
-        return pontos;
-    }
-    
-    /**
-     * @return quantidade de vidas
-     */
-    public int getVida(){
-        return vida;
-    }
-    
-    /**
-     * adiciona mais pontos ao canhao
-     * @param pontos pontos a serem adicionados
-     */
-    public void somaPontos(int pontos) {
-        this.pontos += pontos;
-    }
-    
-    /**
-     * @return se o canhao foi atacado ou nao
-     */
-    public boolean getAtacado() {
-        return this.atacado;
-    }
-    
-    /**
      * reinicia o canhao na sua posicao inicial
      */
     public void reinicia() {
         this.atacado = false;
         this.x = 100;
-    }
-
-    @Override
-    /**
-     * @return se o canhao foi atingido ou nao
-     */
-    public int Atacado(Missil tiro) {
-        int x = tiro.getCoordX();
-        int y = tiro.getCoordY();
-        
-        if ((this.x < x) && (this.x + this.tamanho > x) && (this.y < y) && (this.y + this.tamanho > y)) {
-            vida -= 1;
-            atacado = true;
-            return 1;
-        }
-        return 0;
     }
 
     @Override
@@ -96,5 +42,50 @@ public class Canhao extends Nave{
                 this.x -= 10;
             }
         }
+    }
+
+    @Override
+    /**
+     * @return se o canhao foi atingido ou nao
+     */
+    public int Atacado(Missil tiro) {
+        int x = tiro.getCoordX();
+        int y = tiro.getCoordY();
+        
+        if ((this.x <= x) && (this.x + this.tamanho > x) && (this.y <= y) && (this.y + this.tamanho > y)) {
+            vida -= 1;
+            atacado = true;
+            return 1;
+        }
+        return 0;
+    }
+    
+    /**
+     * adiciona mais pontos ao canhao
+     * @param pontos pontos a serem adicionados
+     */
+    public void somaPontos(int pontos) {
+        this.pontos += pontos;
+    }
+    
+    /**
+     * @return os pontos do jogador
+     */
+    public int getPontos(){
+        return pontos;
+    }
+    
+    /**
+     * @return quantidade de vidas
+     */
+    public int getVida(){
+        return vida;
+    }
+    
+    /**
+     * @return se o canhao foi atacado ou nao
+     */
+    public boolean getAtacado() {
+        return this.atacado;
     }
 }

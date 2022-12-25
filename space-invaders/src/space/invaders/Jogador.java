@@ -2,7 +2,6 @@ package space.invaders;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.canvas.GraphicsContext;
 
 public class Jogador {
@@ -10,7 +9,7 @@ public class Jogador {
     private Canhao canhao;
     
     /**
-     * cria o Jogador
+     * cria o Jogador (barreiras e canhao)
      */
     public Jogador(){
         barreiras = new ArrayList <> ();
@@ -23,25 +22,15 @@ public class Jogador {
         }
     }
 
+    /**
+     * desenha as barreiras e o canhao na tela
+     * @param gc recebe o contexto grafico
+     */
     public void desenha (GraphicsContext gc){
         canhao.desenha(gc);
         for (int i = 0; i < 4; i++){
             barreiras.get(i).desenha(gc);
         }
-    }
-
-    /**
-     * @return quantas vidas o jogador tem
-     */
-    public int getVida(){
-        return canhao.getVida();
-    }
-    
-    /**
-     * @return quantos pontos o jogador fez
-     */
-    public int getPontos(){
-        return canhao.getPontos();
     }
     
     /**
@@ -49,20 +38,6 @@ public class Jogador {
      */
     public void moveCanhao(boolean direc){
         canhao.MoverX(direc);
-    }
-    
-    /**
-     * @return o canhao do jogador
-     */
-    public Canhao getCanhao(){
-        return canhao;
-    }
-    
-    /**
-     * @return a lista de barreiras
-     */
-    public List <Barreira> getBarreiras(){
-        return barreiras;
     }
     
     /**
@@ -91,5 +66,33 @@ public class Jogador {
         tiro = canhao.Atacar();
         lista.adicionaMissil(tiro, 0);
         return lista;
+    }
+
+    /**
+     * @return quantas vidas o jogador tem
+     */
+    public int getVida(){
+        return canhao.getVida();
+    }
+    
+    /**
+     * @return quantos pontos o jogador fez
+     */
+    public int getPontos(){
+        return canhao.getPontos();
+    }
+    
+    /**
+     * @return o canhao do jogador
+     */
+    public Canhao getCanhao(){
+        return canhao;
+    }
+    
+    /**
+     * @return a lista de barreiras
+     */
+    public List <Barreira> getBarreiras(){
+        return barreiras;
     }
 }

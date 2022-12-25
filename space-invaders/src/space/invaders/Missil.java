@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space.invaders;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-/**
- *
- * @author beatr
- */
 public class Missil {
     private int tipo; // indica se eh canhao ou qual invasor eh
 
@@ -49,7 +40,6 @@ public class Missil {
     /**
      * desenha o tiro na tela
      * @param gc recebe o contexto grafico
-     * @return o contexto grafico com o tiro desenhado
      */
     public void desenha(GraphicsContext gc) {
         gc.drawImage(this.imagem, this.coordX - (this.largura/2), this.coordY - (this.largura/2), this.largura, this.largura);
@@ -59,10 +49,10 @@ public class Missil {
      * move o tiro para frente ou para tras, dependendo do tipo
      */
     public void Mover() {
-        if (this.tipo != 0) {
+        if (this.tipo != 0) { // se o tiro eh do invasor, move para baixo
             this.coordY++;
         } else {
-            this.coordY--;
+            this.coordY--; // se nao, move para cima
         }
     }
 

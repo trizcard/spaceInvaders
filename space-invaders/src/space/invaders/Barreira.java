@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space.invaders;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-/**
- *
- * @author beatr
- */
 public class Barreira {
     // a barreira tem a area de altura x (fim - começo) 
     private int comeco; 
@@ -41,17 +32,8 @@ public class Barreira {
     }
     
     /**
-     * Coordenada inicio da barreira
-     * @return coordenada do começo da barreira
-     */
-    public int getCoordX(){
-        return this.comeco;
-    }
-    
-    /**
      * Desenha a barreira na tela
      * @param gc recebe o contexto grafico
-     * @return o contexto grafico com a barreira desenhada
      */
     public void desenha(GraphicsContext gc){
         for (int i = 0; i < 6; i++){
@@ -64,25 +46,11 @@ public class Barreira {
     }
     
     /**
-     * verifica se a barreira existe naquele ponto
-     * @param x coordenada x
-     * @param y coordenada y
-     * @return se existe ou nao a barreira
+     * Coordenada inicio da barreira
+     * @return coordenada do começo da barreira
      */
-    public boolean existe(int x, int y){
-        int localRelativoX = x - this.comeco;
-        int localRelativoY = y - 514;
-        if (localRelativoX > this.largura || localRelativoY > this.altura) {return false;}
-
-        double parteX = Math.floor(localRelativoX / 10);
-        double parteY = Math.floor(localRelativoY / 10);
-
-        if (this.existe[(int)parteX][(int)parteY]){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public int getCoordX(){
+        return this.comeco;
     }
 
     /**
@@ -112,5 +80,27 @@ public class Barreira {
         
         this.existe[(int)parteX][(int)parteY] = false;
         return true;
+    }
+    
+    /**
+     * verifica se a barreira existe naquele ponto
+     * @param x coordenada x
+     * @param y coordenada y
+     * @return se existe ou nao a barreira
+     */
+    public boolean existe(int x, int y){
+        int localRelativoX = x - this.comeco;
+        int localRelativoY = y - 514;
+        if (localRelativoX > this.largura || localRelativoY > this.altura) {return false;}
+
+        double parteX = Math.floor(localRelativoX / 10);
+        double parteY = Math.floor(localRelativoY / 10);
+
+        if (this.existe[(int)parteX][(int)parteY]){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

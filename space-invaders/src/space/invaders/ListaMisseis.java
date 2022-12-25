@@ -22,6 +22,10 @@ public class ListaMisseis {
         pontosObtidos = 0;
     }
     
+    /**
+     * desenha todos os misseis na tela
+     * @param gc recebe o contexto grafico
+     */
     public void desenha (GraphicsContext gc){
         int tam = tirosInv.size();
         for (int i = 0; i < tam; i++){

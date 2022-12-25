@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space.invaders;
 
 import javafx.application.Application;
@@ -18,20 +13,18 @@ import javafx.scene.text.TextAlignment;
 
 /**
  *
- * @author beatr
+ * @author Beatri Cardoso de Oliveira
+ * @NUSP 12566400
  */
 
 public class SpaceInvaders extends Application {
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
     
     @Override
     public void start(Stage primaryStage) {
-        // configura a tela inicial do jogo
+        // Configura a pagina inicial do jogo, com o tamanho 500x600
         Pane root = new Pane();
         root.setPrefSize(500, 600);
         Canvas canvas = new Canvas(500, 600);
@@ -56,7 +49,7 @@ public class SpaceInvaders extends Application {
         });
 
         // configura o botao de inicio facil do jogo
-        Button facil = new Button("FACIL");
+        Button facil = new Button("FÁCIL");
         facil.setStyle("-fx-background-color: grey;"
                 + "-fx-font-size: 12pt;"
                 + "-fx-font-family: Courier New;"
@@ -74,7 +67,7 @@ public class SpaceInvaders extends Application {
         });
         
         // configura o botao de inicio dificil do jogo
-        Button dificil = new Button("DIFICIL");
+        Button dificil = new Button("DIFÍCIL");
         dificil.setStyle("-fx-background-color: grey;"
                 + "-fx-font-size: 12pt;"
                 + "-fx-font-family: Courier New;"

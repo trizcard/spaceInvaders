@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space.invaders;
 
 import javafx.scene.image.Image;
 
-/**
- *
- * @author beatr
- */
 public class Invasor extends Nave{
     // caracteristicas de nave
     protected int velocidade; // velocidade da nave
@@ -46,13 +37,6 @@ public class Invasor extends Nave{
                 break;
         }
     }
-    
-    /**
-     * @return true se o invasor esta vivo, false se nao esta
-     */
-    public boolean getVivo(){
-        return !(this.atacado);
-    }
 
     /**
      * move o invasor em y
@@ -80,13 +64,6 @@ public class Invasor extends Nave{
         }
     }
 
-    /**
-     * muda a velocidade de movimento do invasor
-     */
-    public void mudarVelocidade(){
-        this.velocidade += 2;
-    }
-
     @Override
     /**
      * verifica se o invasor foi atacado pelo tiro, caso acerte, retorna os pontos
@@ -105,5 +82,12 @@ public class Invasor extends Nave{
             return (this.tipo * 10);
         }
         return 0;
+    }
+    
+    /**
+     * @return true se o invasor esta vivo, false se nao esta
+     */
+    public boolean getVivo(){
+        return !(this.atacado);
     }
 }

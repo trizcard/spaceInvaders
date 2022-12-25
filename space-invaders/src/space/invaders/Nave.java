@@ -27,12 +27,11 @@ public abstract class Nave {
     }
     
     /**
-     * desenha a nave na tela
-     * @param gc o contexto grafico
-     * @return o contexto grafico com a nave desenhada
+     * desenha a nave na tela, por meio do contexto grafico
+     * @param gc recebe o contexto grafico
      */
     public void desenha(GraphicsContext gc) {
-        if (atacado){return;}
+        if (atacado){return;} // se foi atacado nao desenha a nave
         gc.drawImage(this.imagem, (this.x), (this.y - (tamanho/2)), this.tamanho, this.tamanho);
     }
 
@@ -57,10 +56,19 @@ public abstract class Nave {
         return this.tipo;
     }
     
+    /**
+     * recebe o missil e retorna se foi atacado ou nao, para invasores, retorna a quantidade de pontos
+     * @param tiro
+     * @return um inteiro que corresponde a 1 ou 0 (para barreira e canhao) ou a quantidade de pontos (para invasores)
+     */
     public int Atacado(Missil tiro) {
         return 0;
     }
     
+    /**
+     * move a nave no eixo x
+     * @param direc true corresponde a direita e false a esquerda
+     */
     public void MoverX(boolean direc) {
 
     }
