@@ -31,13 +31,13 @@ public class Missil {
      */
     public Missil(int x, int y, int t) {
         this.coordX = x;
-        this.largura = 5;
+        this.largura = 10;
 
         // verifica a direcao do tiro em y
         if (t == 0) {
-            this.coordY = y + 1;
+            this.coordY = y;
         } else {
-            this.coordY = y - 1;
+            this.coordY = y;
         }
         
         
@@ -52,7 +52,7 @@ public class Missil {
      * @return o contexto grafico com o tiro desenhado
      */
     public void desenha(GraphicsContext gc) {
-        gc.drawImage(this.imagem, this.coordX, this.coordY, this.largura, this.largura);
+        gc.drawImage(this.imagem, this.coordX - (this.largura/2), this.coordY - (this.largura/2), this.largura, this.largura);
     }
     
     /**
@@ -60,9 +60,9 @@ public class Missil {
      */
     public void Mover() {
         if (this.tipo != 0) {
-            this.coordY--;
-        } else {
             this.coordY++;
+        } else {
+            this.coordY--;
         }
     }
 

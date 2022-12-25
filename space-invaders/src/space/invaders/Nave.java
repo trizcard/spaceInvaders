@@ -3,7 +3,7 @@ package space.invaders;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Nave {
+public abstract class Nave {
     // atributos
     protected int tipo; // indica se e canhao (0) ou invasor (1, 2, 3 ou 4)
     // tipo 1: 10 pontos

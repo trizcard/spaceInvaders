@@ -104,7 +104,7 @@ public class ListaMisseis {
      */
     public void verificaMisseis(){
         tirosInv.removeIf(Missil -> (Missil.getCoordY() < 0));
-        tirosJog.removeIf(Missil -> (Missil.getCoordY() > 19));
+        tirosJog.removeIf(Missil -> (Missil.getCoordY() > 599));
     }
     
     /**

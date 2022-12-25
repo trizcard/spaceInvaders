@@ -30,7 +30,7 @@ public class Invasor extends Nave{
         this.atacado = false;
         this.tipo = t;
         this.tamanho = 30;
-        this.velocidade = 1;
+        this.velocidade = 10;
         switch (t) {
             case 1:
                 this.imagem = new Image(getClass().getResourceAsStream("imagens/invasor1.png"));
@@ -59,7 +59,7 @@ public class Invasor extends Nave{
      */
     public void MoverY() {
         if (this.tipo != 4) { // o invasor 4 nao se move em y
-            this.y--;
+            this.y += 20;
         }
     }
 

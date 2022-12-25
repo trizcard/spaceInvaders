@@ -269,6 +269,7 @@ public class MatrizInvasores {
                         default:
                             break;
                     }
+                    break;
                 }
             }
         }
@@ -332,7 +333,7 @@ public class MatrizInvasores {
      * move todos os invasores
      */
     public void move(){        
-        if (linhaCinco.get(10).getCoordX() == 499 && direc){
+        if (linhaCinco.get(10).getCoordX() + 30 + linhaCinco.get(10).velocidade > 499 && direc){
             for (int i = 0; i < 11; i++){
                 linhaUm.get(i).MoverY();
                 linhaDois.get(i).MoverY();
@@ -342,7 +343,7 @@ public class MatrizInvasores {
             }
             direc = false;
         }
-        else if (linhaCinco.get(0).getCoordX() == 0 && !direc){
+        else if (linhaCinco.get(0).getCoordX() - linhaCinco.get(10).velocidade < 0 && !direc){
             for (int i = 0; i < 11; i++){
                 linhaUm.get(i).MoverY();
                 linhaDois.get(i).MoverY();

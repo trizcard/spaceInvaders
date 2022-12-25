@@ -88,11 +88,11 @@ public class Canhao extends Nave{
     public void MoverX(boolean direc) {
         if (direc) {
             if (this.x < 499) {
-                this.x += 1;
+                this.x += 10;
             }
         } else {
             if (this.x > 0) {
-                this.x -= 1;
+                this.x -= 10;
             }
         }
     }

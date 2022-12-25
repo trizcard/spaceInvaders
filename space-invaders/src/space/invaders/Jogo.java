@@ -50,6 +50,7 @@ public class Jogo {
     
     public Jogo(){
         // inicializa entidades
+        tiroExiste = true;
         jogador = new Jogador();
         invasores = new MatrizInvasores();
         misseis = new ListaMisseis();
@@ -102,17 +103,12 @@ public class Jogo {
                     jogador.moveCanhao(true);
                     //System.out.print("direita");
                     break;
-                case "p":
-                case "P":
-
-                default:
-                    break;
             }
         });
 
         jScene.setOnKeyPressed((KeyEvent event) -> {
-            if (event.getCode() == KeyCode.SPACE & tiroExiste) {
-                jogador.ataqueJogador(misseis);
+            if (event.getCode() == KeyCode.SPACE && tiroExiste) {
+                misseis = jogador.ataqueJogador(misseis);
             }
         });
     }
@@ -138,6 +134,7 @@ public class Jogo {
                     System.out.println("Erro!");
                 }
                 invasores.move();
+                misseis = invasores.AtacarRandom(misseis);
             }
         });
 

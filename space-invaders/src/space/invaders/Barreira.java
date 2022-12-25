@@ -31,7 +31,7 @@ public class Barreira {
         this.comeco = c;
         this.largura = 60; // largura da barreira, eh destruida de 10 em 10
         this.altura = 40; // altura da barreira, eh destruida de 10 em 10
-        this.existe = new boolean[8][4];
+        this.existe = new boolean[6][4];
         for (int i = 0; i < 6; i++){
             for (int j = 0; j < 4; j++){
                 this.existe[i][j] = true;
@@ -97,11 +97,12 @@ public class Barreira {
 
         int localRelativoX = x - this.comeco;
         int localRelativoY = y - 514;
-        if (localRelativoX > this.largura || localRelativoY > this.altura) {return false;}
 
         double parteX = Math.floor(localRelativoX / 10);
         double parteY = Math.floor(localRelativoY / 10);
         
+        if (localRelativoX > this.largura || localRelativoY > this.altura || localRelativoY < 0 || localRelativoX < 0) {return false;}
+        if (this.existe[(int)parteX][(int)parteY] == false){return false;}
         this.existe[(int)parteX][(int)parteY] = false;
         return true;
     }
