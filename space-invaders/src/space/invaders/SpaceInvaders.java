@@ -34,8 +34,7 @@ public class SpaceInvaders extends Application {
         
         Pane root = new Pane();
         root.setPrefSize(500, 600);
-        Canvas canvas = new Canvas();
-
+        Canvas canvas = new Canvas(500, 600);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
         Image original = new Image(getClass().getResourceAsStream("imagens/space.png"));
@@ -72,7 +71,7 @@ public class SpaceInvaders extends Application {
             System.out.println("Iniciando o jogo");
             // quando clica no botao de inicio, chama o loop do jogo
             Jogo jogo = new Jogo(primaryStage);
-            //jogo.start();
+            jogo.start();
         });
         
         root.getChildren().add(canvas);
