@@ -142,24 +142,34 @@ public class ListaMisseis {
      * @return jogador com as informacoes atualizadas
      */
     public Jogador tiroInimigo(Jogador jogador){
-        int qtd = tirosInv.size(); // verifica quantos tiros serao comparados
-        int acertou = 0;
-        int flag = 0;
+        int qtd = tirosInv.size(); // verifica quantos tiros do invasor serao comparados
+        
         for (int i = 0; i < qtd; i++){
-            // chama a fun
-            acertou = acertou + (jogador.getCanhao()).Atacado((tirosInv.get(i)));
-            acertou = acertou + jogador.ataqueBarreira((tirosInv.get(i)));
-            
-            if(tirosJog.size() > i){
-                flag = jogador.ataqueBarreira((tirosJog.get(i)));
-            }
-            if (acertou != 0 || flag != 0){
+            // verifica se o tiro atingiu o canhao
+            if (jogador.getCanhao().Atacado(tirosInv.get(i)) != 0){
+                jogador.getCanhao().reinicia();
                 removeIndex(1, i);
-                break;
+                i--;
+                qtd--;
+                continue;
             }
+            
+            // verifica se o tiro atingiu a barreira
+            if (jogador.ataqueBarreira((tirosInv.get(i))) != 0){
+                removeIndex(1, i);
+                i--;
+                qtd--;
+            }
+            
         }
-        if (acertou != 0){
-            jogador = tiroInimigo(jogador);
+        qtd = tirosJog.size();
+        for (int i = 0; i < qtd; i++){
+            // verifica se o tiro do jogador atingiu a barreira
+            if (jogador.ataqueBarreira((tirosJog.get(i))) != 0){
+                removeIndex(0, i);
+                i--;
+                qtd--;
+            }
         }
         return jogador;
     }
@@ -176,12 +186,10 @@ public class ListaMisseis {
             acertou = invasores.Atacado(tirosJog.get(i));
             if (acertou != 0){
                 removeIndex(0, i);
-                pontosObtidos = pontosObtidos + acertou;
-                break;
+                pontosObtidos += acertou;
+                i--;
+                qtd--;
             }
-        }
-        if (acertou != 0){
-            invasores = tiroJogador(invasores);
         }
         return invasores;
     }

@@ -72,7 +72,8 @@ public class Canhao extends Nave{
     public int Atacado(Missil tiro) {
         int x = tiro.getCoordX();
         int y = tiro.getCoordY();
-        if ((this.x == x) && (this.y == y)) {
+        
+        if ((this.x < x) && (this.x + this.tamanho > x) && (this.y < y) && (this.y + this.tamanho > y)) {
             vida -= 1;
             atacado = true;
             return 1;

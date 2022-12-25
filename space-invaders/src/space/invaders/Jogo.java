@@ -129,7 +129,7 @@ public class Jogo {
         this.tInvasores = new Thread(() -> {
             while (jogador.getVida() > 0 && !invasores.invasoresChegaram() && !invasores.invasoresDestruidos()) {
                 try {
-                    sleep(320 + invasores.quantidade() * 10);
+                    sleep(300 + (invasores.quantidade()/56) * 20);
                 } catch (InterruptedException ex) {
                     System.out.println("Erro!");
                 }
@@ -156,6 +156,14 @@ public class Jogo {
                 gc.drawImage(fundo, 0, 0, 500, 600);
                 jogador = misseis.tiroInimigo(jogador);
                 invasores = misseis.tiroJogador(invasores);
+                jogador.getCanhao().somaPontos(misseis.resgataPontos());
+                
+                // atualiza vida e pontos 
+                vidas = jogador.getVida();
+                System.out.println(vidas);
+                vidaTotal = "Vidas: " + vidas;
+                pontos = jogador.getPontos();
+                pontuacao = "Pontos: " + pontos;
                 if (jogador.getVida() == 0 || invasores.invasoresChegaram() || invasores.invasoresDestruidos()) {
                     tAnimacao.stop();
                     jStage.close();

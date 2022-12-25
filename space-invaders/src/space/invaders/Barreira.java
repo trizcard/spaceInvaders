@@ -97,12 +97,19 @@ public class Barreira {
 
         int localRelativoX = x - this.comeco;
         int localRelativoY = y - 514;
+        
+        // se o tiro esta antes da barreira retorna falso
+        if (localRelativoY < 0 || localRelativoX < 0) {return false;}
+        
+        // se o tiro esta depois da barreira retorna falso
+        if (localRelativoX >= this.largura || localRelativoY >= this.altura) {return false;}
 
         double parteX = Math.floor(localRelativoX / 10);
         double parteY = Math.floor(localRelativoY / 10);
         
-        if (localRelativoX > this.largura || localRelativoY > this.altura || localRelativoY < 0 || localRelativoX < 0) {return false;}
+        // se a barreira ja foi apagada retorna falso
         if (this.existe[(int)parteX][(int)parteY] == false){return false;}
+        
         this.existe[(int)parteX][(int)parteY] = false;
         return true;
     }

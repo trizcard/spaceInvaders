@@ -38,7 +38,7 @@ public class MatrizInvasores {
         linhaQuatro = new ArrayList <> ();
         linhaCinco = new ArrayList <> ();
         
-        invasor = new Invasor(4, 45, 60);
+        invasor = new Invasor(4, 50, 60);
         
         // criar invasores
         for (int i = 0; i < 11; i++) {
@@ -320,7 +320,7 @@ public class MatrizInvasores {
     }
     
     public void moveI4(){
-        if ((invasor.getCoordX() == 499 && !direcI4) || (invasor.getCoordX() == 0 && direcI4)){
+        if ((invasor.getCoordX() + 30 + invasor.velocidade == 500 && !direcI4) || (invasor.getCoordX() - invasor.velocidade == 0 && direcI4)){
             direcI4 = !direcI4;
             invasor.MoverX(direcI4);
         }
