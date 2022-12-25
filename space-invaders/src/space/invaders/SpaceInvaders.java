@@ -49,33 +49,51 @@ public class SpaceInvaders extends Application {
             gc.setFill( Color.LIGHTGRAY );
             gc.setStroke( Color.GRAY );
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.setFont(javafx.scene.text.Font.font("Segoe UI Semibold", 50));
-            gc.setLineWidth(1);
+            gc.setFont(javafx.scene.text.Font.font("Courier New", 50));
+            gc.setLineWidth(2);
             gc.fillText("SPACE INVADERS", 250, 150);
             gc.strokeText("SPACE INVADERS", 250, 150);
         });
 
-        // configura o botao de inicio do jogo
-        Button inicio = new Button("INICIAR");
-        inicio.setStyle("-fx-background-color: grey;"
-                + "-fx-background-opacity: 0.7;"
+        // configura o botao de inicio facil do jogo
+        Button facil = new Button("FACIL");
+        facil.setStyle("-fx-background-color: grey;"
                 + "-fx-font-size: 12pt;"
-                + "-fx-font-family: Segoe UI Semibold;"
+                + "-fx-font-family: Courier New;"
                 + "-fx-text-fill: lightGrey;"
                 + "-fx-background-radius: 20px;");
-        inicio.setMinHeight(30);
-        inicio.setMinWidth(100);
-        inicio.setLayoutX(200);
-        inicio.setLayoutY(400);
-        inicio.setOnAction((event) -> {
+        facil.setMinHeight(30);
+        facil.setMinWidth(100);
+        facil.setLayoutX(200);
+        facil.setLayoutY(375);
+        facil.setOnAction((event) -> {
             System.out.println("Iniciando o jogo");
             primaryStage.close();
             // quando clica no botao de inicio, chama o loop do jogo
-            Jogo jogo = new Jogo();
+            Jogo jogo = new Jogo(0);
+        });
+        
+        // configura o botao de inicio dificil do jogo
+        Button dificil = new Button("DIFICIL");
+        dificil.setStyle("-fx-background-color: grey;"
+                + "-fx-font-size: 12pt;"
+                + "-fx-font-family: Courier New;"
+                + "-fx-text-fill: lightGrey;"
+                + "-fx-background-radius: 20px;");
+        dificil.setMinHeight(30);
+        dificil.setMinWidth(100);
+        dificil.setLayoutX(200);
+        dificil.setLayoutY(425);
+        dificil.setOnAction((event) -> {
+            System.out.println("Iniciando o jogo");
+            primaryStage.close();
+            // quando clica no botao de inicio, chama o loop do jogo
+            Jogo jogo = new Jogo(1);
         });
         
         root.getChildren().add(canvas);
-        root.getChildren().add(inicio);
+        root.getChildren().add(dificil);
+        root.getChildren().add(facil);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

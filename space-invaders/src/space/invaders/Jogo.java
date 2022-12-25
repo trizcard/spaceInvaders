@@ -2,6 +2,7 @@ package space.invaders;
 
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
@@ -43,16 +44,20 @@ public class Jogo {
     private ListaMisseis misseis;
 
     // variaveis de controle
+    private int nivel;
     private long tmpTiroJog;
     private long tmpTiroInv;
     private int vidas;
     private String vidaTotal = "Vidas: " + vidas;
     private int pontos = 0;
+    private int ptVelocidade;
     private String pontuacao = "Pontos: " + pontos;
 
     private Image fundo = new Image(getClass().getResourceAsStream("imagens/space.png"));
     
-    public Jogo(){
+    public Jogo(int nivel){
+        this.nivel = nivel;
+        ptVelocidade = 5000;
         // inicializa entidades
         jogador = new Jogador();
         invasores = new MatrizInvasores();
@@ -115,8 +120,8 @@ public class Jogo {
                 tmpTiroJog = System.currentTimeMillis();
             }
             else if (event.getCode() == KeyCode.ENTER){
+                System.exit(0);
                 jStage.close();
-                exit();
             }
         });
     }
@@ -136,7 +141,7 @@ public class Jogo {
         
         this.tAtaqueInv = new Thread(() -> {
             while (jogador.getVida() > 0 && !invasores.invasoresChegaram() && !invasores.invasoresDestruidos()) {
-                while (System.currentTimeMillis() - tmpTiroInv < 800){
+                while (System.currentTimeMillis() - tmpTiroInv < 900 - nivel*100){
                 }
                 tmpTiroInv = System.currentTimeMillis();
                 misseis = invasores.AtacarRandom(misseis);
@@ -146,7 +151,7 @@ public class Jogo {
         this.tInvasores = new Thread(() -> {
             while (jogador.getVida() > 0 && !invasores.invasoresChegaram() && !invasores.invasoresDestruidos()) {
                 try {
-                    sleep(300 + (invasores.quantidade()/56) * 20);
+                    sleep(300 + (invasores.quantidade()/56) * 20 - nivel*50);
                 } catch (InterruptedException ex) {
                     System.out.println("Erro!");
                 }
@@ -184,18 +189,23 @@ public class Jogo {
                     gc.drawImage(fundo, 0, 0, 500, 600);
                     gc.setFill( Color.WHITE );
                     gc.setTextAlign(TextAlignment.CENTER);
-                    gc.setFont(javafx.scene.text.Font.font("Segoe UI Semibold", 60));
+                    gc.setFont(javafx.scene.text.Font.font("Courier New", 60));
+                    // pontuacao final eh maior se voce termina o jogo mais rapido
                     if (invasores.invasoresDestruidos()){
-                        gc.fillText("Voce ganhou!", 250, 300);
+                        pontos += ptVelocidade + nivel*500;
+                        pontuacao = "Pontos: " + pontos;                        
+                        gc.fillText("Voce ganhou!\n" + pontuacao, 250, 300);
                     }
                     else{
-                        System.out.println(invasores.invasoresChegaram());
-                        gc.fillText("Game over", 250, 300);
+                        pontos += nivel*500;
+                        pontuacao = "Pontos: " + pontos;  
+                        gc.fillText("Game over\n" + pontuacao, 250, 300);
                     }
                 }
                 else{
                     atualizaInterface();
                 }
+                ptVelocidade--;
             }
         };
         tMisseis.start();

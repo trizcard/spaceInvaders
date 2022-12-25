@@ -163,19 +163,19 @@ public class MatrizInvasores {
             }
         }
         if(qtdLinha[0] > 0){
-            return (linhaUm.get(0).getCoordY() > 546);
+            return (linhaUm.get(0).getCoordY() > 514);
         }
         if(qtdLinha[1] > 0){
-            return (linhaDois.get(0).getCoordY() > 546);
+            return (linhaDois.get(0).getCoordY() > 514);
         }
         if(qtdLinha[2] > 0){
-            return (linhaTres.get(0).getCoordY() > 546);
+            return (linhaTres.get(0).getCoordY() > 514);
         }
         if(qtdLinha[3] > 0){
-            return (linhaQuatro.get(0).getCoordY() > 546);
+            return (linhaQuatro.get(0).getCoordY() > 514);
         }
         if(qtdLinha[4] > 0){
-            return (linhaCinco.get(0).getCoordY() > 546);
+            return (linhaCinco.get(0).getCoordY() > 514);
         }
         return false;
     }
@@ -260,7 +260,7 @@ public class MatrizInvasores {
         int infos[] = new int[3];
         
         ataqueUfo++;
-        if (ataqueUfo%15 == 0 || (quantidade() == 1 && invasor.getVivo())){
+        if ((ataqueUfo%15 == 0 || quantidade() == 1) && invasor.getVivo()){
             tiro = invasor.Atacar();
             lista.adicionaMissil(tiro, 1);
             return lista;
