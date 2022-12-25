@@ -267,7 +267,7 @@ public class Jogo {
     }
     
     /**
-     * atualiza toda a interface do jogo a cada movimentaçao do loop
+     * atualiza toda a interface do jogo a cada loop de movimentaçao
      */
     private void atualizaInterface(){
         jogador.desenha(gc);

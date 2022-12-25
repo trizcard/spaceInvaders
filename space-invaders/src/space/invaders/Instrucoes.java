@@ -11,7 +11,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Instrucoes {
-    
+    /**
+     * Indica todas as teclas utilizadas no jogo
+     */
     public Instrucoes(){
         Stage jStage = new Stage();
         Scene jScene;

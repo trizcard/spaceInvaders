@@ -13,7 +13,7 @@ import javafx.scene.text.TextAlignment;
 
 /**
  *
- * @author Beatri Cardoso de Oliveira
+ * @author Beatriz Cardoso de Oliveira
  * @NUSP 12566400
  */
 

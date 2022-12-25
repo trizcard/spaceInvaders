@@ -46,14 +46,6 @@ public class Barreira {
     }
     
     /**
-     * Coordenada inicio da barreira
-     * @return coordenada do começo da barreira
-     */
-    public int getCoordX(){
-        return this.comeco;
-    }
-
-    /**
      * compara se o tiro acertou a barreira, caso sim, a barreira deixa de existir
      * naquele ponto, retornando true e, caso nao, a funçao apenas retorna false
      * @param tiro o missil de ataque
