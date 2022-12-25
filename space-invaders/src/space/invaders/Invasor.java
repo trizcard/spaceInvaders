@@ -98,7 +98,9 @@ public class Invasor extends Nave{
         int x = tiro.getCoordX();
         int y = tiro.getCoordY();
         
-        if ((this.x == x && (this.y == y))) {
+        if (this.atacado == true){return 0;}
+        
+        if ((this.x <= x) && (x < (this.x + this.tamanho)) && ((this.y - this.tamanho/2) <= y) && (y < (this.y + this.tamanho/2))) {
             this.atacado = true;
             return (this.tipo * 10);
         }

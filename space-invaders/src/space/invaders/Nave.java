@@ -32,6 +32,7 @@ public abstract class Nave {
      * @return o contexto grafico com a nave desenhada
      */
     public void desenha(GraphicsContext gc) {
+        if (atacado){return;}
         gc.drawImage(this.imagem, (this.x), (this.y - (tamanho/2)), this.tamanho, this.tamanho);
     }
 
