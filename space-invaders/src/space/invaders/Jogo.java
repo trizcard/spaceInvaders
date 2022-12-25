@@ -30,6 +30,7 @@ public class Jogo {
     
     // threads
     private Thread tMisseis;
+    private Thread tAtaqueInv;
     private Thread tInvasor4;
     private Thread tInvasores;
     
@@ -42,7 +43,8 @@ public class Jogo {
     private ListaMisseis misseis;
 
     // variaveis de controle
-    private boolean tiroExiste;
+    private long tmpTiroJog;
+    private long tmpTiroInv;
     private int vidas;
     private String vidaTotal = "Vidas: " + vidas;
     private int pontos = 0;
@@ -52,7 +54,6 @@ public class Jogo {
     
     public Jogo(){
         // inicializa entidades
-        tiroExiste = true;
         jogador = new Jogador();
         invasores = new MatrizInvasores();
         misseis = new ListaMisseis();
@@ -109,8 +110,9 @@ public class Jogo {
         });
 
         jScene.setOnKeyPressed((KeyEvent event) -> {
-            if (event.getCode() == KeyCode.SPACE && tiroExiste) {
+            if (event.getCode() == KeyCode.SPACE && (System.currentTimeMillis() - tmpTiroJog) > 200) {
                 misseis = jogador.ataqueJogador(misseis);
+                tmpTiroJog = System.currentTimeMillis();
             }
             else if (event.getCode() == KeyCode.ENTER){
                 jStage.close();
@@ -131,6 +133,15 @@ public class Jogo {
                 misseis.movimentacao();
             }
         });
+        
+        this.tAtaqueInv = new Thread(() -> {
+            while (jogador.getVida() > 0 && !invasores.invasoresChegaram() && !invasores.invasoresDestruidos()) {
+                while (System.currentTimeMillis() - tmpTiroInv < 800){
+                }
+                tmpTiroInv = System.currentTimeMillis();
+                misseis = invasores.AtacarRandom(misseis);
+            }
+        });
 
         this.tInvasores = new Thread(() -> {
             while (jogador.getVida() > 0 && !invasores.invasoresChegaram() && !invasores.invasoresDestruidos()) {
@@ -140,12 +151,6 @@ public class Jogo {
                     System.out.println("Erro!");
                 }
                 invasores.move();
-                try {
-                    sleep(300 + (invasores.quantidade()/56) * 20);
-                } catch (InterruptedException ex) {
-                    System.out.println("Erro!");
-                }
-                misseis = invasores.AtacarRandom(misseis);
             }
         });
 
@@ -171,7 +176,6 @@ public class Jogo {
                 
                 // atualiza vida e pontos 
                 vidas = jogador.getVida();
-                System.out.println(vidas);
                 vidaTotal = "Vidas: " + vidas;
                 pontos = jogador.getPontos();
                 pontuacao = "Pontos: " + pontos;
@@ -185,6 +189,7 @@ public class Jogo {
                         gc.fillText("Voce ganhou!", 250, 300);
                     }
                     else{
+                        System.out.println(invasores.invasoresChegaram());
                         gc.fillText("Game over", 250, 300);
                     }
                 }
@@ -194,6 +199,7 @@ public class Jogo {
             }
         };
         tMisseis.start();
+        tAtaqueInv.start();
         tInvasores.start();
         tInvasor4.start();
         tAnimacao.start();

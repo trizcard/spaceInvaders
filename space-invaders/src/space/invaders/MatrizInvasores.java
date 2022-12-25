@@ -27,6 +27,8 @@ public class MatrizInvasores {
     private boolean direc; // direcao de movimento invasores
     private boolean direcI4; // direcao de movimento do invasor 4
     
+    private int ataqueUfo; // invasor 4 (ufo) ataca a cada 15 ataques
+    
     /**
      * cria os invasores
      */
@@ -40,6 +42,7 @@ public class MatrizInvasores {
         
         invasor = new Invasor(4, 50, 60);
         
+        ataqueUfo = 0;
         // criar invasores
         for (int i = 0; i < 11; i++) {
             Invasor invasor1 = new Invasor(1, (i*35)+15,280);
@@ -99,6 +102,7 @@ public class MatrizInvasores {
                 qtd++;
             }
         }
+        if (invasor.getVivo()){ qtd++; }
         return qtd;
     }
 
@@ -137,19 +141,40 @@ public class MatrizInvasores {
      * @return true se os invasores chegaram na base
      */
     public boolean invasoresChegaram(){
-        if(!linhaUm.isEmpty()){
+        int qtdLinha[] = new int[5];
+        for (int i = 0; i < 5; i++){
+            qtdLinha[i] = 0;
+        }
+        for (int i = 0; i < 11; i++){
+            if (linhaUm.get(i).getVivo()){
+                qtdLinha[0]++;
+            }
+            if (linhaDois.get(i).getVivo()){
+                qtdLinha[1]++;
+            }
+            if (linhaTres.get(i).getVivo()){
+                qtdLinha[2]++;
+            }
+            if (linhaQuatro.get(i).getVivo()){
+                qtdLinha[3]++;
+            }
+            if (linhaCinco.get(i).getVivo()){
+                qtdLinha[4]++;
+            }
+        }
+        if(qtdLinha[0] > 0){
             return (linhaUm.get(0).getCoordY() > 546);
         }
-        if(!linhaDois.isEmpty()){
+        if(qtdLinha[1] > 0){
             return (linhaDois.get(0).getCoordY() > 546);
         }
-        if(!linhaTres.isEmpty()){
+        if(qtdLinha[2] > 0){
             return (linhaTres.get(0).getCoordY() > 546);
         }
-        if(!linhaQuatro.isEmpty()){
+        if(qtdLinha[3] > 0){
             return (linhaQuatro.get(0).getCoordY() > 546);
         }
-        if(!linhaCinco.isEmpty()){
+        if(qtdLinha[4] > 0){
             return (linhaCinco.get(0).getCoordY() > 546);
         }
         return false;
@@ -233,10 +258,15 @@ public class MatrizInvasores {
         Missil tiro;
         boolean flag = true;
         int infos[] = new int[3];
-
+        
+        ataqueUfo++;
+        if (ataqueUfo%15 == 0 || (quantidade() == 1 && invasor.getVivo())){
+            tiro = invasor.Atacar();
+            lista.adicionaMissil(tiro, 1);
+            return lista;
+        }
         while(flag){
             int n = rand.nextInt(11); // numero aleatorio de 0 a 10
-
             for (int i = 1; i < 6; i++){
                 infos = infoInvasor(n, i);
                 if (infos[2] == 1){
