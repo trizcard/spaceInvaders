@@ -42,7 +42,7 @@ public class Invasor extends Nave{
                 this.imagem = new Image(getClass().getResourceAsStream("imagens/invasor3.png"));
                 break;
             case 4:
-                this.imagem = new Image(getClass().getResourceAsStream("imagens/barreira.png"));
+                this.imagem = new Image(getClass().getResourceAsStream("imagens/ufo.png"));
                 break;
         }
     }

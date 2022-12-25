@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
+import static javafx.application.Platform.exit;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -110,6 +112,10 @@ public class Jogo {
             if (event.getCode() == KeyCode.SPACE && tiroExiste) {
                 misseis = jogador.ataqueJogador(misseis);
             }
+            else if (event.getCode() == KeyCode.ENTER){
+                jStage.close();
+                exit();
+            }
         });
     }
     
@@ -134,6 +140,11 @@ public class Jogo {
                     System.out.println("Erro!");
                 }
                 invasores.move();
+                try {
+                    sleep(300 + (invasores.quantidade()/56) * 20);
+                } catch (InterruptedException ex) {
+                    System.out.println("Erro!");
+                }
                 misseis = invasores.AtacarRandom(misseis);
             }
         });
@@ -166,9 +177,20 @@ public class Jogo {
                 pontuacao = "Pontos: " + pontos;
                 if (jogador.getVida() == 0 || invasores.invasoresChegaram() || invasores.invasoresDestruidos()) {
                     tAnimacao.stop();
-                    jStage.close();
+                    gc.drawImage(fundo, 0, 0, 500, 600);
+                    gc.setFill( Color.WHITE );
+                    gc.setTextAlign(TextAlignment.CENTER);
+                    gc.setFont(javafx.scene.text.Font.font("Segoe UI Semibold", 60));
+                    if (invasores.invasoresDestruidos()){
+                        gc.fillText("Voce ganhou!", 250, 300);
+                    }
+                    else{
+                        gc.fillText("Game over", 250, 300);
+                    }
                 }
-                atualizaInterface();
+                else{
+                    atualizaInterface();
+                }
             }
         };
         tMisseis.start();
