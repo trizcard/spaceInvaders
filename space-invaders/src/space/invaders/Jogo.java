@@ -135,7 +135,7 @@ public class Jogo {
         });
 
         jScene.setOnKeyPressed((KeyEvent event) -> {
-            if (event.getCode() == KeyCode.SPACE && (System.currentTimeMillis() - tmpTiroJog) > 200) {
+            if (event.getCode() == KeyCode.SPACE && (System.currentTimeMillis() - tmpTiroJog) > 200 + nivel*100) {
                 misseis = jogador.ataqueJogador(misseis);
                 tmpTiroJog = System.currentTimeMillis();
             }
