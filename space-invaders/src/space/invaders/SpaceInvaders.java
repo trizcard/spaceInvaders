@@ -84,7 +84,25 @@ public class SpaceInvaders extends Application {
             Jogo jogo = new Jogo(1);
         });
         
+        // configura o botao de instruçoes do jogo
+        Button instr = new Button("INSTRUÇÕES");
+        instr.setStyle("-fx-background-color: grey;"
+                + "-fx-font-size: 8pt;"
+                + "-fx-font-family: Courier New;"
+                + "-fx-text-fill: lightGrey;"
+                + "-fx-background-radius: 20px;");
+        instr.setMinHeight(30);
+        instr.setMinWidth(80);
+        instr.setLayoutX(210);
+        instr.setLayoutY(475);
+        instr.setOnAction((event) -> {
+            System.out.println("Instruçoes do jogo");
+            primaryStage.close();
+            Instrucoes inst = new Instrucoes();
+        });
+        
         root.getChildren().add(canvas);
+        root.getChildren().add(instr);
         root.getChildren().add(dificil);
         root.getChildren().add(facil);
         Scene scene = new Scene(root);
