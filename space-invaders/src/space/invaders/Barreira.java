@@ -16,7 +16,6 @@ public class Barreira {
      * Cria a barreira com esse parametros de inicio e fim com todas as suas
      * posiçoes iguais a verdadeiro (true)
      * @param c começo
-     * @param f fim
      */
     public Barreira(int c) {
         this.comeco = c;

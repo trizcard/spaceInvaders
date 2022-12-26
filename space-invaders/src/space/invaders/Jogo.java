@@ -176,7 +176,7 @@ public class Jogo {
                 try {
                     // delay para mover os invasores, o delay diminui conforme a quantidade de invasores diminui
                     // o delay eh 50 ms menor para o nivel dificil
-                    sleep(300 + (invasores.quantidade()/56) * 20 - nivel*50);
+                    sleep(300 + (invasores.quantidade()/56) * 20 - nivel*100);
                 } catch (InterruptedException ex) {
                     System.out.println("Erro!");
                 }
@@ -200,7 +200,7 @@ public class Jogo {
             while (jogador.getVida() > 0 && !invasores.invasoresChegaram() && !invasores.invasoresDestruidos()) {
                 // aguarda o tempo de cooldown entre os disparos dos invasores
                 // para o nivel facil cooldown = 900, para o nivel dificil cooldown = 800
-                while (System.currentTimeMillis() - tmpTiroInv < 900 - nivel*100){
+                while (System.currentTimeMillis() - tmpTiroInv < 900 - nivel*200){
                 }
                 tmpTiroInv = System.currentTimeMillis();
                 misseis = invasores.AtacarRandom(misseis);

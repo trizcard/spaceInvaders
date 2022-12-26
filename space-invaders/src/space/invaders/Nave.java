@@ -58,7 +58,7 @@ public abstract class Nave {
     
     /**
      * recebe o missil e retorna se foi atacado ou nao, para invasores, retorna a quantidade de pontos
-     * @param tiro
+     * @param tiro o tiro qu esta atacando a nave
      * @return um inteiro que corresponde a 1 ou 0 (para barreira e canhao) ou a quantidade de pontos (para invasores)
      */
     public int Atacado(Missil tiro) {

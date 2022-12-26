@@ -14,7 +14,7 @@ import javafx.scene.text.TextAlignment;
 /**
  *
  * @author Beatriz Cardoso de Oliveira
- * @NUSP 12566400
+ * NUSP: 12566400
  */
 
 public class SpaceInvaders extends Application {
